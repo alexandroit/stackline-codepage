@@ -246,7 +246,7 @@
           mdb[j++] = 128 + (w&63);
         }
       }
-      if(!ofmt || ofmt === 'buf') return Buffer_from(mdb.slice(0,j));
+      if(!ofmt || ofmt === 'buf') return mdb.slice(0,j);
       if(ofmt !== 'arr') return mdb.slice(0,j).toString('binary');
       return [].slice.call(mdb, 0, j);
     };

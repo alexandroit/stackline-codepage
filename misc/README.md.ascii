@@ -1,42 +1,3 @@
-# @stackline/codepage
-
-Independently maintained Apache-2.0 fork of `codepage@1.15.0`. Original implementation, attribution and license are retained; this is not an official SheetJS release. The precise published source, git commit and SHA-512 integrity are recorded in [UPSTREAM.json](UPSTREAM.json).
-
-```sh
-npm install @stackline/codepage
-```
-
-```js
-const library = require("@stackline/codepage");
-```
-
-## Changes in 1.0.0
-
-- Correct CommonJS declarations using export =, with exported namespace types and numeric codepage indexing (upstream issue #23).
-- Return an owned Buffer from cached UTF-8 encoding. The released shared-buffer slice could be overwritten by subsequent encode/decode calls; the algorithms and non-Buffer output formats are retained.
-- Keep every published converter table and browser bundle; replace obsolete development tooling with node:test and a pinned current TypeScript compiler.
-
-## Development and verification
-
-Use Node.js 18 or newer for development (verified locally with Node 24). Run `npm ci --ignore-scripts`, `npm run build`, `npm run lint`, `npm test`, and `npm run test:package`. Also run `npm run test:types`. TypeScript CommonJS consumers can use `import cp = require("@stackline/codepage")`; default import requires interoperable module handling. The incorrect upstream named runtime export `cptable` is not introduced.
-
-`lint` is a JavaScript syntax check, not a claim of a full style/security analysis. All packages have no runtime npm dependencies. `npm audit` reports registry advisories only; absence of findings is not proof that all format parsing is safe.
-
-327 passing runtime/upstream tests; CommonJS and interoperable default-import TypeScript fixtures.
-
-Sources reviewed on 2026-09-27:
-
-- https://github.com/SheetJS/js-codepage/issues/23
-- https://github.com/SheetJS/js-codepage/pull/19
-
-Publication is performed by the repository GitHub workflow; do not publish from a local checkout. This fork does not modify or publish `@stackline/xlsx`.
-
-## Original upstream documentation
-
-The following retained documentation describes the original library and may use its original package name. For this fork install and import the scoped package shown above.
-
----
-
 # js-codepage
 
 [Codepages](https://en.wikipedia.org/wiki/Codepage) are character encodings.  In
@@ -96,7 +57,7 @@ Most codepages are indexed by number.  To get the Unicode character for a given
 codepoint, use the `dec` property:
 
 ```js
-var unicode_cp10000_255 = cptable[10000].dec[255]; // ˇ
+var unicode_cp10000_255 = cptable[10000].dec[255]; // 
 ```
 
 To get the codepoint for a given character, use the `enc` property:
@@ -108,9 +69,9 @@ var cp10000_711 = cptable[10000].enc[String.fromCharCode(711)]; // 255
 There are a few utilities that deal with strings and buffers:
 
 ```js
-var 汇总 = cptable.utils.decode(936, [0xbb,0xe3,0xd7,0xdc]);
-var buf =  cptable.utils.encode(936,  汇总);
-var sushi= cptable.utils.decode(65001, [0xf0,0x9f,0x8d,0xa3]); // 🍣
+var  = cptable.utils.decode(936, [0xbb,0xe3,0xd7,0xdc]);
+var buf =  cptable.utils.encode(936,  );
+var sushi= cptable.utils.decode(65001, [0xf0,0x9f,0x8d,0xa3]); // 
 var sbuf = cptable.utils.encode(65001, sushi);
 ```
 
@@ -209,7 +170,7 @@ tables are not generated, there is no corresponding entry (they are "magic").
 | `  872` | unicode.org | OEM Cyrillic (primarily Russian) + Euro Symbol       |
 | `  874` | unicode.org | Windows Thai                                         |
 | `  875` | unicode.org | IBM EBCDIC Greek Modern                              |
-| `  895` |     NLS     | Kamenický (Czech) MS-DOS                             |
+| `  895` |     NLS     | Kamenick (Czech) MS-DOS                             |
 | `  932` | unicode.org | Japanese Shift-JIS                                   |
 | `  936` | unicode.org | Simplified Chinese GBK                               |
 | `  949` | unicode.org | Korean                                               |

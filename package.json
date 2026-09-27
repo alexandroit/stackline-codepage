@@ -1,6 +1,6 @@
 {
-  "name": "codepage",
-  "version": "1.15.0",
+  "name": "@stackline/codepage",
+  "version": "1.0.0",
   "author": "SheetJS",
   "description": "pure-JS library to handle codepages",
   "keywords": [
@@ -12,44 +12,23 @@
   "main": "cputils.js",
   "types": "types",
   "browser": {
-    "buffer": "false"
+    "buffer": false
   },
   "devDependencies": {
-    "voc": "~1.1.0",
-    "mocha": "~2.5.3",
-    "blanket": "~1.2.3",
-    "@sheetjs/uglify-js": "~2.7.3",
-    "@types/node": "^8.0.7",
-    "@types/commander": "^2.12.0",
-    "dtslint": "^0.1.2",
-    "typescript": "2.2.0"
+    "typescript": "7.0.2"
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/SheetJS/js-codepage.git"
+    "url": "git+https://github.com/alexandroit/stackline-codepage.git"
   },
   "scripts": {
-    "pretest": "git submodule init && git submodule update",
-    "test": "make test",
-    "build": "make js",
-    "lint": "make fullint",
-    "dtslint": "dtslint types"
+    "test": "node --test test-stackline/*.test.cjs",
+    "lint": "node scripts/check-syntax.cjs",
+    "build": "node scripts/build.cjs",
+    "test:types": "node scripts/check-types.cjs",
+    "test:package": "node scripts/package-smoke.cjs"
   },
-  "config": {
-    "blanket": {
-      "pattern": "[cputils.js]"
-    }
-  },
-  "alex": {
-    "allow": [
-      "chinese",
-      "european",
-      "german",
-      "japanese",
-      "latin"
-    ]
-  },
-  "homepage": "https://sheetjs.com/",
+  "homepage": "https://github.com/alexandroit/stackline-codepage",
   "files": [
     "LICENSE",
     "README.md",
@@ -60,13 +39,20 @@
     "cptable.js",
     "cputils.js",
     "dist/sbcs.full.js",
-    "dist/cpexcel.full.js"
+    "dist/cpexcel.full.js",
+    "NOTICE",
+    "UPSTREAM.json",
+    "CHANGELOG.md"
   ],
   "bugs": {
-    "url": "https://github.com/SheetJS/js-codepage/issues"
+    "url": "https://github.com/alexandroit/stackline-codepage/issues"
   },
   "license": "Apache-2.0",
   "engines": {
     "node": ">=0.8"
-  }
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "dependencies": {}
 }

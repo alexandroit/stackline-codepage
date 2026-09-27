@@ -1,6 +1,7 @@
 /* codepage.js (C) 2013-present SheetJS -- http://sheetjs.com */
-// TypeScript Version: 2.2
-
+// CommonJS declarations corrected by Stackline; upstream runtime is unchanged.
+declare const cptable: cptable.CP$Module;
+declare namespace cptable {
 /** Codepage index type (integer or string representation) */
 export type CP$Index = number | string;
 
@@ -24,7 +25,7 @@ export interface CP$Utils {
 	magic: {[cp: string]: string};
 }
 
-/* note: TS cannot export top-level indexer, hence default workaround */
+/** CommonJS runtime export, including its numeric codepage index. */
 export interface CP$Module {
 	/** Version string */
 	version: string;
@@ -35,5 +36,5 @@ export interface CP$Module {
 	/** Codepage Converters */
 	[cp: number]: CP$Conv;
 }
-export const cptable: CP$Module;
-export default cptable;
+}
+export = cptable;
