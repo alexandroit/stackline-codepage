@@ -412,7 +412,7 @@ to produce a complete script like `cpexcel.full.js`.
 
 ### Upstream building the complete script
 
-This script uses [voc](npm.im/voc).  The script to build the codepage tables and
+This script uses [voc](https://www.npmjs.com/package/voc).  The script to build the codepage tables and
 the JS source is `codepage.md`, so building involves `voc codepage.md`.
 
 ### Upstream testing
