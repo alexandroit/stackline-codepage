@@ -1,6 +1,21 @@
 # @stackline/codepage
 
-Independently maintained Apache-2.0 fork of `codepage@1.15.0`. Original implementation, attribution and license are retained; this is not an official SheetJS release. The precise published source, git commit and SHA-512 integrity are recorded in [UPSTREAM.json](UPSTREAM.json).
+> Encode and decode text with preserved SheetJS codepage tables and CommonJS TypeScript declarations.
+
+[![npm version](https://img.shields.io/npm/v/@stackline/codepage.svg?style=flat-square)](https://www.npmjs.com/package/@stackline/codepage)
+[![license](https://img.shields.io/npm/l/@stackline/codepage.svg?style=flat-square)](https://github.com/alexandroit/stackline-codepage/blob/main/LICENSE)
+[![GitHub repository](https://img.shields.io/badge/GitHub-Repository-181717?style=flat-square&logo=github)](https://github.com/alexandroit/stackline-codepage)
+
+**[Documentation](https://github.com/alexandroit/stackline-codepage#readme)** |
+**[npm](https://www.npmjs.com/package/@stackline/codepage)** |
+**[Issues](https://github.com/alexandroit/stackline-codepage/issues)** |
+**[Repository](https://github.com/alexandroit/stackline-codepage)**
+
+**Package version:** `1.0.1`
+
+## Why this package?
+
+Independently maintained Apache-2.0 fork of `codepage@1.15.0`. Original implementation, attribution and license are retained; this is not an official SheetJS release. The precise published source, git commit and SHA-512 integrity are recorded in [UPSTREAM.json](https://github.com/alexandroit/stackline-codepage/blob/main/UPSTREAM.json).
 
 ```sh
 npm install @stackline/codepage
@@ -10,45 +25,38 @@ npm install @stackline/codepage
 const library = require("@stackline/codepage");
 ```
 
-## Changes in 1.0.0
+### Changes in 1.0.0
 
 - Correct CommonJS declarations using export =, with exported namespace types and numeric codepage indexing (upstream issue #23).
 - Return an owned Buffer from cached UTF-8 encoding. The released shared-buffer slice could be overwritten by subsequent encode/decode calls; the algorithms and non-Buffer output formats are retained.
 - Keep every published converter table and browser bundle; replace obsolete development tooling with node:test and a pinned current TypeScript compiler.
 
-## Development and verification
-
-Use Node.js 18 or newer for development (verified locally with Node 24). Run `npm ci --ignore-scripts`, `npm run build`, `npm run lint`, `npm test`, and `npm run test:package`. Also run `npm run test:types`. TypeScript CommonJS consumers can use `import cp = require("@stackline/codepage")`; default import requires interoperable module handling. The incorrect upstream named runtime export `cptable` is not introduced.
-
-`lint` is a JavaScript syntax check, not a claim of a full style/security analysis. All packages have no runtime npm dependencies. `npm audit` reports registry advisories only; absence of findings is not proof that all format parsing is safe.
-
-327 passing runtime/upstream tests; CommonJS and interoperable default-import TypeScript fixtures.
-
-Sources reviewed on 2026-09-27:
-
-- https://github.com/SheetJS/js-codepage/issues/23
-- https://github.com/SheetJS/js-codepage/pull/19
-
-Publication is performed by the repository GitHub workflow; do not publish from a local checkout. This fork does not modify or publish `@stackline/xlsx`.
-
-## Original upstream documentation
-
-The following retained documentation describes the original library and may use its original package name. For this fork install and import the scoped package shown above.
-
----
-
-# js-codepage
-
 [Codepages](https://en.wikipedia.org/wiki/Codepage) are character encodings.  In
 many contexts, single- or double-byte character sets are used in lieu of Unicode
 encodings.  The codepages map between characters and numbers.
 
-## Setup
+## Compatibility
+
+| Item | Value |
+| --- | --- |
+| Package | `@stackline/codepage@1.0.1` |
+| Supported Node.js | `>=0.8` |
+| Module entry | `cputils.js` (CommonJS) |
+| Runtime dependencies | 0 direct dependencies |
+| Types | `types` |
+
+## Installation
+
+```bash
+npm install @stackline/codepage
+```
+
+### Setup
 
 In node:
 
 ```js
-var cptable = require('codepage');
+var cptable = require('@stackline/codepage');
 ```
 
 In the browser:
@@ -92,6 +100,12 @@ desirable.  To prevent the behavior, define `DO_NOT_EXPORT_CODEPAGE`.
 
 ## Usage
 
+```js
+const codepage = require('@stackline/codepage');
+const encoded = codepage.utils.encode(1252, 'Hello');
+console.log(codepage.utils.decode(1252, encoded)); // Hello
+```
+
 Most codepages are indexed by number.  To get the Unicode character for a given
 codepoint, use the `dec` property:
 
@@ -124,7 +138,9 @@ and returns a representation controlled by `ofmt`:
 `cptable.utils.decode(CP, data)` accepts a byte String or Array of numbers or
 Buffer and returns a JS string.
 
-## Known Excel Codepages
+## Features
+
+### Known Excel Codepages
 
 A much smaller script, including only the codepages known to be used in Excel,
 is available under the name `cpexcel`.  It exposes the same variable `cptable`
@@ -137,44 +153,7 @@ In node:
 var cptable = require('codepage/dist/cpexcel.full');
 ```
 
-## Rolling your own script
-
-The `make.sh` script in the repo can take a manifest and generate JS source.
-
-Usage:
-
-```bash
-$ bash make.sh path_to_manifest output_file_name JSVAR
-```
-
-where
-
-- `JSVAR` is the name of the exported variable (generally `cptable`)
-- `output_file_name` is the output file (`cpexcel.js`, `cptable.js`, ...)
-- `path_to_manifest` is the path to the manifest file.
-
-The manifest file is expected to be a CSV with 3 columns:
-
-```
-<codepage number>,<source>,<size>
-```
-
-If a source is specified, it will try to download the specified file and parse.
-The file format is expected to follow the format from the unicode.org site.
-The size should be `1` for a single-byte codepage and `2` for a double-byte
-codepage.  For mixed codepages (which use some single- and some double-byte
-codes), the script assumes the mapping is a prefix code and generates efficient
-JS code.
-
-Generated scripts only include the mapping.  `cat` a mapping with `cputils.js`
-to produce a complete script like `cpexcel.full.js`.
-
-## Building the complete script
-
-This script uses [voc](npm.im/voc).  The script to build the codepage tables and
-the JS source is `codepage.md`, so building involves `voc codepage.md`.
-
-## Generated Codepages
+### Generated Codepages
 
 The complete list of codepages can be found in the file `pages.csv`.
 
@@ -354,16 +333,13 @@ unicode.org does not prescribe a value, `MakeEncoding.cs` value is used.
 of Windows.  In older versions of Windows (like Windows 98) these files followed
 the name pattern `CP_#.NLS`, but newer versions use the name pattern `C_#.NLS`.
 
-## Testing
+## Security
 
-`make test` will run the nodejs-based test.
+Cached UTF-8 encoding returns an owned Buffer so later conversions cannot overwrite the previously returned bytes. This release retains the existing converter tables and non-Buffer output formats.
 
-To run the in-browser tests, run a local server and go to the `ctest` directory.
-`make ctestserv` will start a python `SimpleHTTPServer` server on port 8000.
+## API Surface
 
-To update the browser artifacts, run `make ctest`.
-
-## Sources
+### Sources
 
 - [Unicode Consortium Public Mappings](http://www.unicode.org/Public/MAPPINGS/)
 - [Windows Code Page Enumeration](http://msdn.microsoft.com/en-us/library/cc195051.aspx)
@@ -373,17 +349,106 @@ To update the browser artifacts, run `make ctest`.
 - [International Register of Coded Character Sets To Be Used With Escape Sequences](https://www.itscj.ipsj.or.jp/itscj_english/iso-ir/ISO-IR.pdf)
 - [Japanese Character Encoding for Internet Messages](https://tools.ietf.org/html/rfc1468)
 
+## Local Development
+
+Clone the [repository](https://github.com/alexandroit/stackline-codepage) and run the following commands from its root:
+
+```bash
+npm ci
+npm run build
+npm test
+npm run lint
+npm run test:types
+```
+
+The retained upstream development notes below include historical tooling; the commands above are the maintained package checks.
+
+### Development and verification
+
+Use Node.js 18 or newer for development (verified locally with Node 24). Run `npm ci --ignore-scripts`, `npm run build`, `npm run lint`, `npm test`, and `npm run test:package`. Also run `npm run test:types`. TypeScript CommonJS consumers can use `import cp = require("@stackline/codepage")`; default import requires interoperable module handling. The incorrect upstream named runtime export `cptable` is not introduced.
+
+`lint` is a JavaScript syntax check, not a claim of a full style/security analysis. All packages have no runtime npm dependencies. `npm audit` reports registry advisories only; absence of findings is not proof that all format parsing is safe.
+
+327 passing runtime/upstream tests; CommonJS and interoperable default-import TypeScript fixtures.
+
+Sources reviewed on 2026-09-27:
+
+- https://github.com/SheetJS/js-codepage/issues/23
+- https://github.com/SheetJS/js-codepage/pull/19
+
+Publication is performed by the repository GitHub workflow; do not publish from a local checkout. This fork does not modify or publish `@stackline/xlsx`.
+
+### Upstream rolling your own script
+
+The `make.sh` script in the repo can take a manifest and generate JS source.
+
+Usage:
+
+```bash
+$ bash make.sh path_to_manifest output_file_name JSVAR
+```
+
+where
+
+- `JSVAR` is the name of the exported variable (generally `cptable`)
+- `output_file_name` is the output file (`cpexcel.js`, `cptable.js`, ...)
+- `path_to_manifest` is the path to the manifest file.
+
+The manifest file is expected to be a CSV with 3 columns:
+
+```
+<codepage number>,<source>,<size>
+```
+
+If a source is specified, it will try to download the specified file and parse.
+The file format is expected to follow the format from the unicode.org site.
+The size should be `1` for a single-byte codepage and `2` for a double-byte
+codepage.  For mixed codepages (which use some single- and some double-byte
+codes), the script assumes the mapping is a prefix code and generates efficient
+JS code.
+
+Generated scripts only include the mapping.  `cat` a mapping with `cputils.js`
+to produce a complete script like `cpexcel.full.js`.
+
+### Upstream building the complete script
+
+This script uses [voc](npm.im/voc).  The script to build the codepage tables and
+the JS source is `codepage.md`, so building involves `voc codepage.md`.
+
+### Upstream testing
+
+`make test` will run the nodejs-based test.
+
+To run the in-browser tests, run a local server and go to the `ctest` directory.
+`make ctestserv` will start a python `SimpleHTTPServer` server on port 8000.
+
+To update the browser artifacts, run `make ctest`.
+
+## Consumer Smoke Test
+
+`npm run test:package` packs the library and exercises an isolated consumer using the repository fixture.
+
+## Release Checklist
+
+1. Update the package version, lockfile, generated version fields, and changelog together.
+2. Run the development checks above and audit both `npm audit` and `npm audit --omit=dev`.
+3. Use the [GitHub publish workflow](https://github.com/alexandroit/stackline-codepage/actions/workflows/publish.yml) with its `Prod` environment to publish the exact CI tarball.
+4. Verify public npm bytes, package identity, provenance, and the immutable GitHub release evidence.
+
+## Community and Support
+
+Report reproducible package issues in the [issue tracker](https://github.com/alexandroit/stackline-codepage/issues).
+
+- [Stackline / Alexandro.Net](https://alexandro.net/)
+- [GitHub](https://github.com/alexandroit)
+- [Maintainer LinkedIn](https://www.linkedin.com/in/aleinfo/)
+- [Reddit community: r/Stackline](https://www.reddit.com/r/Stackline/)
+
 ## License
+
+[Apache-2.0](https://github.com/alexandroit/stackline-codepage/blob/main/LICENSE). Original copyright notices and upstream attribution are retained.
 
 Please consult the attached LICENSE file for details.  All rights not explicitly
 granted by the Apache 2.0 license are reserved by the Original Author.
 
-## Badges
-
-[![Sauce Test Status](https://saucelabs.com/browser-matrix/codepage.svg)](https://saucelabs.com/u/codepage)
-
-[![Build Status](https://travis-ci.org/SheetJS/js-codepage.svg?branch=master)](https://travis-ci.org/SheetJS/js-codepage)
-
-[![Coverage Status](http://img.shields.io/coveralls/SheetJS/js-codepage/master.svg)](https://coveralls.io/r/SheetJS/js-codepage?branch=master)
-
-[![Analytics](https://ga-beacon.appspot.com/UA-36810333-1/SheetJS/js-codepage?pixel)](https://github.com/SheetJS/js-codepage)
+See [NOTICE](https://github.com/alexandroit/stackline-codepage/blob/main/NOTICE) for retained attribution.

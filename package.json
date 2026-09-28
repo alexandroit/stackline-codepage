@@ -1,13 +1,19 @@
 {
   "name": "@stackline/codepage",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "author": "SheetJS",
-  "description": "pure-JS library to handle codepages",
+  "description": "Encode and decode text with preserved SheetJS codepage tables and CommonJS TypeScript declarations",
   "keywords": [
+    "stackline",
     "codepage",
     "iconv",
     "convert",
-    "strings"
+    "strings",
+    "encoding",
+    "charset",
+    "unicode",
+    "decoder",
+    "encoder"
   ],
   "main": "cputils.js",
   "types": "types",
@@ -28,7 +34,7 @@
     "test:types": "node scripts/check-types.cjs",
     "test:package": "node scripts/package-smoke.cjs"
   },
-  "homepage": "https://github.com/alexandroit/stackline-codepage",
+  "homepage": "https://github.com/alexandroit/stackline-codepage#readme",
   "files": [
     "LICENSE",
     "README.md",
