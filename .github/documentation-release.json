@@ -4,7 +4,7 @@
     {
       "name": "@stackline/codepage",
       "path": "README.md",
-      "version": "1.0.1",
+      "version": "1.0.2",
       "baselineVersion": "1.0.0",
       "keywords": [
         "stackline",
@@ -19,8 +19,8 @@
       "homepage": "https://alexandro.net/docs/vanilla/codepage/",
       "baselineTarball": "https://registry.npmjs.org/@stackline/codepage/-/codepage-1.0.0.tgz",
       "baselineIntegrity": "sha512-F8DjQm33B44Lk0A9tE5eb1FCqtLOYXYdVXDdlnlb/y6dgQXGAqLb43ha0pmUrWGA8EIntCIZQDqUP12ZYUV1Jg==",
-      "expectedSha512": "dce96ec84d51f2556323d110b6b387fd3c263c253445d33555a806b93815b2eea4f2792c885838e2ec7d565ff95942460fe22dde1dd7be36731de36d6cae7cf5",
-      "tag": "docs-stackline-codepage-v1.0.1"
+      "expectedSha512": "da62b32cc344723992bdb0281ee224003bdf5b035f194d013361897e7b723f625411b51b453957e762556f9a67db45936befc3341468e7f7865649bb23f65741",
+      "tag": "docs-stackline-codepage-v1.0.2"
     }
   ]
 }

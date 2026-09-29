@@ -4,13 +4,13 @@
 
 [![npm version](https://img.shields.io/npm/v/@stackline/codepage.svg?style=flat-square)](https://www.npmjs.com/package/@stackline/codepage)
 [![license](https://img.shields.io/npm/l/@stackline/codepage.svg?style=flat-square)](https://github.com/alexandroit/stackline-codepage)
-[![GitHub repository](https://img.shields.io/badge/GitHub-alexandroit%2Fstackline-codepage-181717?style=flat-square&logo=github)](https://github.com/alexandroit/stackline-codepage)
+[![GitHub repository](https://img.shields.io/badge/GitHub-repository-181717?style=flat-square&logo=github)](https://github.com/alexandroit/stackline-codepage)
 [![Docs](https://img.shields.io/badge/docs-alexandro.net-0f766e?style=flat-square)](https://alexandro.net/docs/vanilla/codepage/)
 [![Reddit community](https://img.shields.io/badge/community-r%2FStackline-ff4500?style=flat-square&logo=reddit&logoColor=white)](https://www.reddit.com/r/Stackline/)
 
 **[Documentation](https://alexandro.net/docs/vanilla/codepage/)** | **[npm](https://www.npmjs.com/package/@stackline/codepage)** | **[Issues](https://github.com/alexandroit/stackline-codepage/issues)** | **[Repository](https://github.com/alexandroit/stackline-codepage)**
 
-**Current package version:** `1.0.1`
+**Current package version:** `1.0.2`
 
 ---
 
@@ -40,7 +40,7 @@ encodings.  The codepages map between characters and numbers.
 
 | Item | Value |
 | --- | --- |
-| Package | `@stackline/codepage@1.0.1` |
+| Package | `@stackline/codepage@1.0.2` |
 | Supported Node.js | `>=0.8` |
 | Module entry | `cputils.js` (CommonJS) |
 | Runtime dependencies | 0 direct dependencies |
