@@ -5,15 +5,13 @@
   "description": "Encode and decode text with preserved SheetJS codepage tables and CommonJS TypeScript declarations",
   "keywords": [
     "stackline",
+    "npm-package",
     "codepage",
+    "typescript",
+    "nodejs",
     "iconv",
     "convert",
-    "strings",
-    "encoding",
-    "charset",
-    "unicode",
-    "decoder",
-    "encoder"
+    "strings"
   ],
   "main": "cputils.js",
   "types": "types",
@@ -34,7 +32,7 @@
     "test:types": "node scripts/check-types.cjs",
     "test:package": "node scripts/package-smoke.cjs"
   },
-  "homepage": "https://github.com/alexandroit/stackline-codepage#readme",
+  "homepage": "https://alexandro.net/docs/vanilla/codepage/",
   "files": [
     "LICENSE",
     "README.md",
