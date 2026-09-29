@@ -1,6 +1,6 @@
 {
   "name": "@stackline/codepage",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "author": "SheetJS",
   "description": "Encode and decode text with preserved SheetJS codepage tables and CommonJS TypeScript declarations",
   "keywords": [
